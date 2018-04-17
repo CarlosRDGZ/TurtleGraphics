@@ -79,7 +79,7 @@ namespace TurtleGraphics
                     "turtle = " + floor.Turtle.ToString()
                 );
                 Console.WriteLine("Options: 1 Pen up. 2 Pen down. 4 Girar Izq. 3 Girar Der.");
-                Console.WriteLine("         5 Move [steps]. 7 QUIT");
+                Console.WriteLine("         5 Move [steps] 6 Clear 7 QUIT.");
                 Console.Write("Command: ");
                 string input = Console.ReadLine();
                 string[] args = input.Split(' ');
@@ -101,10 +101,11 @@ namespace TurtleGraphics
                         break;
                     case "5":
                         try
-                        {
-                            floor.MoveTurtle(int.Parse(args[1]));
-                        }
+                        { floor.MoveTurtle(int.Parse(args[1])); }
                         catch (Exception) { }
+                        break;
+                    case "6":
+                        floor.Clear();
                         break;
                 }
                 Console.Clear();

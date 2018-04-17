@@ -39,9 +39,9 @@ namespace TurtleGraphics
         public void Move()
         {
             if (_facing % 2 == 0)
-                _x += DELTA[_facing];
-            else
                 _y += DELTA[_facing];
+            else
+                _x += DELTA[_facing];
         }
 
         public override string ToString()

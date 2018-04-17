@@ -3,9 +3,9 @@ namespace TurtleGraphics
 {
     class Floor
     {
-        private int _rows;
-        private int _cols;
-        private bool[,] _floor;
+        private readonly int _rows;
+        private readonly int _cols;
+        private readonly bool[,] _floor;
         public readonly Turtle Turtle;
 
         public Floor(int rows, int cols)
@@ -32,9 +32,9 @@ namespace TurtleGraphics
         {
             int pos;
             if (Turtle.Facing % 2 == 0)
-                pos = Turtle.X;
-            else
                 pos = Turtle.Y;
+            else
+                pos = Turtle.X;
 
             int moves = Math.Abs(Math.Max(0, 
                 Math.Min(pos + (steps * Turtle.DELTA[Turtle.Facing] + (Turtle.DELTA[Turtle.Facing] * -1)), 
@@ -53,6 +53,13 @@ namespace TurtleGraphics
 
         public string TurtleData() => Turtle.ToString();
 
+        public void Clear()
+        {
+            for (int i = 0; i < _rows; i++)
+                for (int j = 0; j < _cols; j++)
+                    _floor[i,j] = false;
+        }
+
         public override string ToString()
         {
             string str = "";
@@ -60,8 +67,8 @@ namespace TurtleGraphics
             {
                 for (int j = 0; j < _cols; j++)
                 {
-                    if (j != Turtle.X || i != Turtle.Y)
-                        str += _floor[j,i] ? " * " : " - ";
+                    if (i != Turtle.X || j != Turtle.Y)
+                        str += _floor[i,j] ? " * " : "   ";
                     else
                         str += " $ ";
                 }
